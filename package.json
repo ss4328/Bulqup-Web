@@ -1,0 +1,26 @@
+{
+  "name": "wulqup-web",
+  "version": "1.0.0",
+  "description": "The wokout app",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "init": "^0.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ss4328/Bulqup-Web.git"
+  },
+  "author": "Shivansh Suhane",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ss4328/Bulqup-Web/issues"
+  },
+  "homepage": "https://github.com/ss4328/Bulqup-Web#readme"
+}
