@@ -1,33 +1,37 @@
 var express = require("express");
 var app = express();
 
-var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/test");
+// var mongoose = require("mongoose");
+// mongoose.connect("mongodb://localhost/test");
 
-var workoutSchema = new mongoose.Schema({
-    workoutName: String,
-    videoLink: String,
-    Rating: Number,
-    QuickFacts: {
-                MusclesWorked: String,
-                Type: String,
-                SkillLevel: String,
-                GeneralRemark: String
-    },
-    WorkoutLoad: {
-                EasyCount: Number,
-                MediumCount: Number,
-                HardCount: Number
-    },
-    imagelink: String,
-    workoutInstructions: [{type: String}],
-    tips: [{type: String}]
+// var workoutSchema = new mongoose.Schema({
+//     workoutName: String,
+//     videoLink: String,
+//     Rating: Number,
+//     QuickFacts: {
+//                 MusclesWorked: String,
+//                 Type: String,
+//                 SkillLevel: String,
+//                 GeneralRemark: String
+//     },
+//     WorkoutLoad: {
+//                 EasyCount: Number,
+//                 MediumCount: Number,
+//                 HardCount: Number
+//     },
+//     imagelink: String,
+//     workoutInstructions: [{type: String}],
+//     tips: [{type: String}]
     
-})
+// })
 
-var workoutModel = mongoose.model("WORKOUTSCHEMA",workoutSchema); 
+// var workoutModel = mongoose.model("WORKOUTSCHEMA",workoutSchema); 
 
-var workoutExample=new workoutModel({workoutName: "Bench-PressFROMDB", videoLink:"", Rating: 1, QuickFacts:{MusclesWorked:"a", type:"B", SkillLevel:"C", GeneralRemark:"D"}, WorkoutLoad: {EasyCount:10, MediumCount:20, HardCount:30}, imagelink:"", workoutInstructions:["a"], tips:["b"]});
+// var workoutExample=new workoutModel({workoutName: "Bench-PressFROMDB", videoLink:"", Rating: 1, QuickFacts:{MusclesWorked:"a", type:"B", SkillLevel:"C", GeneralRemark:"D"}, WorkoutLoad: {EasyCount:10, MediumCount:20, HardCount:30}, imagelink:"", workoutInstructions:["a"], tips:["b"]});
+
+
+//dont uncomment this
+
 
 // workoutExample.save(function(err, workout){
 //     if(err){
@@ -68,29 +72,30 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 app.get("/", function(req,res){
-    res.render('home');
+    res.render('new_homepage');
+    // res.render('home');
 });
 
-app.get("/home", function(req,res){
-    res.render('new_homepage');
-})
+// app.get("/home", function(req,res){
+//     res.render('new_homepage');
+// })
 
 app.get("/dbadd", function(req,res){
     res.render('dbadd');
 });
 
 app.get("/workout", function(req,res){
-    workoutModel.find({}, function(err, obj){
-        if(err){
-            console.log("OH NO! We got an error here!");
-        }
-        else{
-            console.log(obj);
-            console.log(obj[0].workoutName);
-            res.render('workout', {objpassed:obj});
-        }
-    })
-   //res.render('workout'); 
+    // workoutModel.find({}, function(err, obj){
+    //     if(err){
+    //         console.log("OH NO! We got an error here!");
+    //     }
+    //     else{
+    //         console.log(obj);
+    //         console.log(obj[0].workoutName);
+    //         res.render('workout', {objpassed:obj});
+    //     }
+    // })
+   res.render('workout'); 
 });
 
 app.listen(process.env.PORT, process.env.IP, function(){
