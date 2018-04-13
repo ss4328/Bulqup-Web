@@ -7,7 +7,9 @@
     "body-parser": "^1.18.2",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
-    "init": "^0.1.2"
+    "init": "^0.1.2",
+    "mongodb": "^3.0.3",
+    "mongoose": "^5.0.8"
   },
   "devDependencies": {},
   "scripts": {

@@ -1,0 +1,126 @@
+<% include header%> 
+
+<div class="container">
+	<h1>Submit Data to DB:</h1>
+	<h3>Workout Info:</h3>
+	<form id="mainForm">
+		<div class ="row">
+
+		  <div class="form-group col-lg-3">
+		    <label >Workout Name</label>
+		    <input class="form-control" id="workoutName"  placeholder="Enter Workout Name">
+		  </div>
+		  <div class="form-group col-lg-3">
+		    <label >Tutorial Link</label>
+		    <input class="form-control" id="tutorialLink"  placeholder="Enter Tutorial Link">
+		  </div>
+		  <div class="form-group col-lg-3">
+		    <label >Display Image</label>
+		    <input class="form-control" id="displayImage"  placeholder="Enter Display Image">
+		  </div>
+		  <div class="form-group col-lg-3">
+		    <label >Rating</label>
+		    <input class="form-control" id="rating"  placeholder="Enter Rating">
+		  </div>
+
+		</div>
+	  
+
+	  <h3>QuickFacts:</h3>
+	  <div class="row">
+
+	  <div class="form-group col-lg-3">
+	    <label >Muscles Worked</label>
+	    <input class="form-control" id="musclesWorked"  placeholder="Enter Muscles Worked">
+	  </div>
+	  <div class="form-group col-lg-3">
+	    <label >Workout Type</label>
+	    <input class="form-control" id="workoutType"  placeholder="Enter Workout Type">
+	  </div>
+	  <div class="form-group col-lg-3">
+	    <label >Skill Level</label>
+	    <input class="form-control" id="skillLevel"  placeholder="Enter Skill Level">
+	  </div>
+	  <div class="form-group col-lg-3">
+	    <label >General Remarks</label>
+	    <input class="form-control" id="generalRemarks"  placeholder="Enter General Remarks">
+	  </div>
+
+	  </div>
+
+	<h3>Workout Counts:</h3>
+	  <div class="row">
+	  	<div class="form-group col-lg-3">
+	    	<label >EasyCount</label>
+	    	<input class="form-control" id="easyCount"  placeholder="Enter Easycount total (Number of reps X sets)">
+	  	</div>
+	  	<div class="form-group col-lg-3">
+	    	<label >MediumCount</label>
+	    	<input class="form-control" id="mediumCount"  placeholder="Enter MediumCount total (Number of reps X sets)">
+	  	</div>
+	  	<div class="form-group col-lg-3">
+	    	<label >HardCount</label>
+	    	<input class="form-control" id="hardCount"  placeholder="Enter HardCount total (Number of reps X sets)">
+	  	</div>
+
+	  </div>
+
+	  <h3>Related Workout:</h3>
+	  <div class="row">
+	  	<div class="form-group col-lg-3">
+	    	<label >Related Workout 1</label>
+	    	<input class="form-control" id="relworkout1"  placeholder="Enter Easycount total (Number of reps X sets)">
+	  	</div>
+	  	<div class="form-group col-lg-3">
+	    	<label >Related Workout 2</label>
+	    	<input class="form-control" id="relworkout2"  placeholder="Enter MediumCount total (Number of reps X sets)">
+	  	</div>
+	  	<div class="form-group col-lg-3">
+	    	<label >Related Workout 3</label>
+	    	<input class="form-control" id="relworkout3"  placeholder="Enter HardCount total (Number of reps X sets)">
+	  	</div>
+	  	<div class="form-group col-lg-3">
+	    	<label >Related Workout 4</label>
+	    	<input class="form-control" id="relworkout4"  placeholder="Enter HardCount total (Number of reps X sets)">
+	  	</div>
+
+	  </div>
+
+	  <h3>Workout Instructions:</h3>
+	  	<div class="form-group" id="instructions">
+	    	<label >Instruction 1</label>
+	    	<input class="form-control" id="ins1"  placeholder="Enter Instruction 1">
+	    </div><div class="form-group ">
+	    	<label >Instruction 2</label>
+	    	<input class="form-control" id="ins2"  placeholder="Enter Instruction 2">
+	    </div><div class="form-group ">
+	    	<label >Instruction 3</label>
+	    	<input class="form-control" id="ins3"  placeholder="Enter Instruction 3">
+	    </div><div class="form-group ">
+	    	<label >Instruction 4</label>
+	    	<input class="form-control" id="ins4"  placeholder="Enter Instruction 4">
+	    </div>
+
+	    <h3>Tips:</h3>
+	    <div class="form-group" id="tips">
+	    	<label >Tip 1</label>
+	    	<input class="form-control" id="tip1"  placeholder="Enter Tip 1">
+	    </div><div class="form-group ">
+	    	<label >Tip 2</label>
+	    	<input class="form-control" id="tip2"  placeholder="Enter Tip 2">
+	    </div><div class="form-group ">
+	    	<label >Tip 3</label>
+	    	<input class="form-control" id="tip3"  placeholder="Enter Tip 3">
+	    </div><div class="form-group ">
+	    	<label >Tip 4</label>
+	    	<input class="form-control" id="tip4"  placeholder="Enter Tip 4">
+	    </div>
+
+	  <button type="submit" class="btn btn-primary" onclick="submitDataToDB()">Submit</button>
+	  <br></br>
+	</form>
+</div>
+
+<script src="js/submitToDb.js"></script>
+
+<% include footer%> 
