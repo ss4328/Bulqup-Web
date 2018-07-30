@@ -2,7 +2,7 @@ var express = require("express");
 var app = express();
 const fs = require('fs');
 var forceSSL = require('express-force-ssl');
-app.use(forceSSL);
+
 var mongoose = require("mongoose");
 
 console.log("above fs shit")
@@ -190,6 +190,8 @@ app.get("/workouts/:workoutRequested", function(req,res){
 app.get('*', function(req, res){
   res.render('routeNotFound');
 });
+
+app.use(forceSSL);
 
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("Server has Started!");
