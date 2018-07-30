@@ -1,5 +1,5 @@
 {
-  "connectionString":"mongodb://shiv:mongopassword1@ds217310.mlab.com:17310/bulqup",
+  "connectionString":"${MONGODB}",
   "benchPressID":"5b3c4414b256ae073a5e2aa6",
   "barbellRowID":"5b41bd09b8003505b53dcb95",
   "deadliftID":"5b4b91a537dbed08a8af8bb6",

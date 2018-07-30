@@ -9,7 +9,7 @@ let rawdata = fs.readFileSync('public/other-resources/config.JSON');
 let JSONFromConfig = JSON.parse(rawdata);  
 console.log(JSONFromConfig);
 
-mongoose.connect(process.env.MONGODB);
+mongoose.connect("mongodb://shiv:mongopassword1@ds217310.mlab.com:17310/bulqup");
 
 //mongoose.connect("mongodb://localhost/test");
 var workoutSchema = new mongoose.Schema({
