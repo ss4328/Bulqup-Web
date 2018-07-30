@@ -1,6 +1,8 @@
 var express = require("express");
 var app = express();
 const fs = require('fs');
+var forceSSL = require('express-force-ssl');
+app.use(forceSSL);
 var mongoose = require("mongoose");
 
 console.log("above fs shit")
@@ -9,7 +11,7 @@ let rawdata = fs.readFileSync('public/other-resources/config.JSON');
 let JSONFromConfig = JSON.parse(rawdata);  
 console.log(JSONFromConfig);
 
-mongoose.connect("mongodb://shiv:mongopassword1@ds217310.mlab.com:17310/bulqup");
+mongoose.connect(process.env.MONGODB);
 
 //mongoose.connect("mongodb://localhost/test");
 var workoutSchema = new mongoose.Schema({
