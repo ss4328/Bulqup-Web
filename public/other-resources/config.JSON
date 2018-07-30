@@ -1,8 +1,8 @@
 {
-  "connectionString":"${MONGODB}",
-  "benchPressID":"5b3c4414b256ae073a5e2aa6",
-  "barbellRowID":"5b41bd09b8003505b53dcb95",
-  "deadliftID":"5b4b91a537dbed08a8af8bb6",
-  "overheadPressID":"5b5e5815bfc8cf192c32a967",
-  "squatID":"5b5e5f53852c8d19770ebc20"
+ "connectionString":"",
+ "benchPressID":"5b3c4414b256ae073a5e2aa6",
+ "barbellRowID":"5b41bd09b8003505b53dcb95",
+ "deadliftID":"5b4b91a537dbed08a8af8bb6",
+ "overheadPressID":"5b5e5815bfc8cf192c32a967",
+ "squatID":"5b5e5f53852c8d19770ebc20"
 }

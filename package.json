@@ -1,7 +1,7 @@
 {
-  "name": "wulqup-web",
+  "name": "bulqup-web",
   "version": "1.0.0",
-  "description": "The wokout app",
+  "description": "The workout app",
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.18.2",

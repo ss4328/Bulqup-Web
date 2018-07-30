@@ -18,8 +18,11 @@
 
         <!-- Seller Information -->
         <div class="row">
+            <div class="col-md-8 embed-responsive embed-responsive-16by9 hidden-lg hidden-md">
+              <iframe class="embed-responsive-item" src= <%=objpassed.videoLink%> width="100%" allowfullscreen></iframe>
+            </div>
 
-            <div class="col-md-8">
+            <div class="col-md-8 hidden-sm hidden-xs">
                 <object data=<%=objpassed.videoLink%> width="700" height="393"></object>
             </div>
 
@@ -90,7 +93,12 @@
                     
                 </ol>
             </div>
-            <div class="col-lg-6 col-xs-12" style="left: -50px;">
+            
+            <div class="col-xs-12 hidden-lg hidden-md">
+                <img src=<%=objpassed.imagelink%> width="100%">
+            </div>
+
+            <div class="col-lg-6 hidden-sm hidden-xs" style="left: -50px;">
                 <img src=<%=objpassed.imagelink%> >
             </div>
 
