@@ -16,8 +16,10 @@
     color: inherit;
     border: none;
     outline: none;
-    font-size: 18px;
+    font-size: 19px;
+    /*font-weight: bold;*/
     text-transform: uppercase;
+    margin:0px 0px 10px; 
 }
 
 .row2 {
@@ -30,6 +32,8 @@
     border: 0 none;
     outline: 0 none;
     font-size: 15px;
+    background-color: white;
+    color: black;
 }
 
 .custom-navbar-button {
@@ -213,33 +217,6 @@
 .sidenav-heading{
     font-size: 36px;
     color: #fff;
-}
-
-
-
-
-.footer-links {
-    font-family: oswald;
-    letter-spacing: 0;
-    font-size: 16px;
-    list-style-type:none;
-
-    
-    
-}
-
-footer a {
-	color: #999999;
-
-}
-
-footer h3 {
-	text-transform: uppercase;
-}
-
-footer a:hover{
-	color:white;
-	text-transform: none;
 }
 
 #navbar-image{

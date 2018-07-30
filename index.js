@@ -1,20 +1,24 @@
 var express = require("express");
 var app = express();
-
+const fs = require('fs');
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/test");
 
-var bodyParser = require("body-parser");
+console.log("above fs shit")
 
-app.use(bodyParser.urlencoded({extended: true}));
+let rawdata = fs.readFileSync('public/other-resources/config.JSON');
+let JSONFromConfig = JSON.parse(rawdata);  
+console.log(JSONFromConfig);
 
+mongoose.connect(JSONFromConfig.connectionString);
+
+//mongoose.connect("mongodb://localhost/test");
 var workoutSchema = new mongoose.Schema({
     workoutName: String,
     videoLink: String,
     Rating: Number,
     QuickFacts: {
                 MusclesWorked: String,
-                Type: String,
+                WorkoutType: String,
                 SkillLevel: String,
                 GeneralRemark: String
     },
@@ -27,7 +31,7 @@ var workoutSchema = new mongoose.Schema({
     workoutInstructions: [{type: String}],
     tips: [{type: String}]
     
-})
+});
 
 var workoutModel = mongoose.model("WORKOUTSCHEMA",workoutSchema); 
 
@@ -46,8 +50,6 @@ var workoutExample=new workoutModel({workoutName: "Bench-PressFROMDB", videoLink
 //         console.log(workoutExample);
 //     }
 // });
-
-
 
 // var testSchema = new mongoose.Schema({
 //     content1: String,
@@ -68,9 +70,6 @@ var workoutExample=new workoutModel({workoutName: "Bench-PressFROMDB", videoLink
 //     }
 // });
 
-
-
-
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -78,8 +77,12 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 app.get("/", function(req,res){
-    res.render('new_homepage');
+    res.redirect('/workouts');
     // res.render('home');
+});
+
+app.get("/home", function(req, res){
+    res.render('new_homepage');
 });
 
 // app.get("/home", function(req,res){
@@ -99,7 +102,7 @@ app.post("/populateTables", function(req,res){
     var rating  = req.body.rating;
     
     var musclesWorked = req.body.musclesWorked;
-    var workoutType =req.body.workoutType;
+    var workoutType = req.body.workoutType;
     var skillLevel=req.body.skillLevel;
     var generalRemarks=req.body.generalRemarks;
     
@@ -121,7 +124,7 @@ app.post("/populateTables", function(req,res){
     var tip3 =req.body.tip3;
     var tip4 =req.body.tip4;
     
-    var workoutToAdd=new workoutModel({workoutName: workoutName, videoLink:tutorialLink, Rating: rating, QuickFacts:{MusclesWorked:musclesWorked, type:workoutType, SkillLevel:skillLevel, GeneralRemark:generalRemarks}, WorkoutLoad: {EasyCount:easyCount, MediumCount:mediumCount, HardCount:hardCount}, imagelink:displayImage, workoutInstructions:[ins1, ins2, ins3, ins4], tips:[tip1,tip2,tip3,tip4]});
+    var workoutToAdd=new workoutModel({workoutName: workoutName, videoLink:tutorialLink, Rating: rating, QuickFacts:{MusclesWorked:musclesWorked, WorkoutType:workoutType, SkillLevel:skillLevel, GeneralRemark:generalRemarks}, WorkoutLoad: {EasyCount:easyCount, MediumCount:mediumCount, HardCount:hardCount}, imagelink:displayImage, workoutInstructions:[ins1, ins2, ins3, ins4], tips:[tip1,tip2,tip3,tip4]});
     
     
     workoutToAdd.save(function(err, cat){
@@ -138,12 +141,39 @@ app.post("/populateTables", function(req,res){
     console.log('Workout Name: '+ workoutName);
     console.log((req.xhr).toString());
     res.redirect('/dbadd');
-})
+});
 
-app.get("/workout", function(req,res){
-    workoutModel.findById("5adba18f1c6b080d94f7b4bf", function(err, obj){
+app.get("/workouts", function(req,res){
+    res.render('workouts');
+    // res.render('home');
+});
+
+app.get("/workouts/:workoutRequested", function(req,res){
+    var databaseId ="";
+    if(req.params.workoutRequested=="benchPress"){
+        console.log("requested benchPress");
+        databaseId=JSONFromConfig.benchPressID.toString();
+    }
+    else if(req.params.workoutRequested=="barbellRow"){
+        console.log("requested barbellRow");    
+        databaseId=JSONFromConfig.barbellRowID.toString();
+    }
+    else if(req.params.workoutRequested=="deadlift"){
+        console.log("requested deadlift");    
+        databaseId=JSONFromConfig.deadliftID.toString();
+    }
+    else if(req.params.workoutRequested=="overheadPress"){
+        console.log("requested overheadPress");    
+        databaseId=JSONFromConfig.overheadPressID.toString();
+    }else if(req.params.workoutRequested=="squat"){
+        console.log("requested squat");    
+        databaseId=JSONFromConfig.squatID.toString();
+    }
+    
+    
+    workoutModel.findById(databaseId, function(err, obj){
         if(err){
-            console.log("OH NO! We got an error here!");
+            console.log("OH NO! We got an error here! " + err);
         }
         else{
             console.log("No error connecting to DB");
@@ -155,6 +185,10 @@ app.get("/workout", function(req,res){
    //res.render('workoutTemplate'); 
 });
 
+app.get('*', function(req, res){
+  res.render('routeNotFound');
+});
+
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("Server has Started!");
-})
+});

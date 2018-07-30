@@ -1,0 +1,3 @@
+MongoDB shell version: 2.6.12
+connecting to: ds217310.mlab.com:17310/bulqup
+2018-06-23T04:47:37.611+0000 Error: 4 Missing expected field "pwd" at src/mongo/shell/db.js:1292
