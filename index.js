@@ -5,9 +5,9 @@ var forceSSL = require('express-force-ssl');
 
 var mongoose = require("mongoose");
 
-// let rawdata = fs.readFileSync('public/other-resources/config.JSON');
-// let JSONFromConfig = JSON.parse(rawdata);  
-// console.log(JSONFromConfig);
+let rawdata = fs.readFileSync('public/other-resources/config.JSON');
+let JSONFromConfig = JSON.parse(rawdata);  
+//console.log(JSONFromConfig);
 
 mongoose.connect(process.env.MONGODB);
 
