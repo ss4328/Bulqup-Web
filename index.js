@@ -5,8 +5,6 @@ var forceSSL = require('express-force-ssl');
 
 var mongoose = require("mongoose");
 
-console.log("above fs shit")
-
 let rawdata = fs.readFileSync('public/other-resources/config.JSON');
 let JSONFromConfig = JSON.parse(rawdata);  
 console.log(JSONFromConfig);
@@ -79,13 +77,33 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 app.get("/", function(req,res){
-    res.redirect('/workouts');
+    res.redirect('/home');
     // res.render('home');
 });
 
 app.get("/home", function(req, res){
-    res.render('new_homepage');
+    res.render('index');
 });
+
+app.get("/articles/:article", function(req, res){
+    if(req.params.article == "5x5"){
+        res.render('articles/5x5');
+    }
+    if(req.params.article == "how-do-muscles-grow"){
+        res.render('articles/how-do-muscles-grow');
+    }
+    if(req.params.article == "how-to-get-the-best-sleep"){
+        res.render('articles/how-to-get-the-best-sleep');
+    }
+    if(req.params.article == "how-much-protein-should-you-munch"){
+        res.render('articles/how-much-protein-should-you-munch');
+    }
+    if(req.params.article == "a-guide-on-warmups"){
+        res.render('articles/a-guide-on-warmups');
+    }
+    
+});
+
 
 // app.get("/home", function(req,res){
 //     res.render('new_homepage');
@@ -150,6 +168,11 @@ app.get("/workouts", function(req,res){
     // res.render('home');
 });
 
+app.get("/about", function(req,res){
+    res.render('about');
+    // res.render('home');
+});
+
 app.get("/workouts/:workoutRequested", function(req,res){
     var databaseId ="";
     if(req.params.workoutRequested=="benchPress"){
@@ -186,6 +209,7 @@ app.get("/workouts/:workoutRequested", function(req,res){
     })
    //res.render('workoutTemplate'); 
 });
+
 
 app.get('*', function(req, res){
   res.render('routeNotFound');
