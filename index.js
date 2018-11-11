@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 const fs = require('fs');
 var forceSSL = require('express-force-ssl');
+var path = require('path');
 
 var mongoose = require("mongoose");
 
@@ -9,7 +10,8 @@ let rawdata = fs.readFileSync('public/other-resources/config.JSON');
 let JSONFromConfig = JSON.parse(rawdata);  
 //console.log(JSONFromConfig);
 
-mongoose.connect(process.env.MONGODB);
+mongoose.connect(JSONFromConfig.connectionString);
+//mongoose.connect(process.env.MONGODB);
 
 //mongoose.connect("mongodb://localhost/test");
 var workoutSchema = new mongoose.Schema({
@@ -208,6 +210,16 @@ app.get("/workouts/:workoutRequested", function(req,res){
         }
     })
    //res.render('workoutTemplate'); 
+});
+
+// app.get('/sitemap', function( req, res, next ) {
+//     app.use(express.static('sitemap'));
+//     res.header('Content-Type', 'application/xml');
+//     res.render( 'sitemap.xml' );
+// });
+
+app.get('/sitemap', function( req, res, next ) {
+    res.sendFile(path.join(__dirname, 'views', 'sitemap.xml'));
 });
 
 
