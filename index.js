@@ -10,8 +10,8 @@ let rawdata = fs.readFileSync('public/other-resources/config.JSON');
 let JSONFromConfig = JSON.parse(rawdata);  
 //console.log(JSONFromConfig);
 
-mongoose.connect(JSONFromConfig.connectionString);
-//mongoose.connect(process.env.MONGODB);
+//mongoose.connect(JSONFromConfig.connectionString);
+mongoose.connect(process.env.MONGODB);
 
 //mongoose.connect("mongodb://localhost/test");
 var workoutSchema = new mongoose.Schema({
