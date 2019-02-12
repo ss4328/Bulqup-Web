@@ -73,6 +73,10 @@ a {
   -webkit-transition: 0.2s color;
   transition: 0.2s color;
 }
+.pageAnchor{
+  color: #337ab7;
+  text-decoration: none;
+}
 
 a:hover, a:focus {
   color: #E4572E;

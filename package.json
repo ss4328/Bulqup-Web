@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "dialog": "^0.3.1",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-force-ssl": "^0.3.2",
@@ -12,7 +13,8 @@
     "generate-readme": "^0.3.1",
     "init": "^0.1.2",
     "mongodb": "^3.0.3",
-    "mongoose": "^5.2.5"
+    "mongoose": "^5.2.5",
+    "nodemailer": "^4.6.8"
   },
   "devDependencies": {},
   "scripts": {

@@ -1,10 +1,15 @@
 var express = require("express");
 var app = express();
+var dialog = require('dialog');
+
 const fs = require('fs');
+const nodemailer = require('nodemailer');
+
 var forceSSL = require('express-force-ssl');
 var path = require('path');
-
 var mongoose = require("mongoose");
+
+
 
 let rawdata = fs.readFileSync('public/other-resources/config.JSON');
 let JSONFromConfig = JSON.parse(rawdata);  
@@ -103,7 +108,9 @@ app.get("/articles/:article", function(req, res){
     if(req.params.article == "a-guide-on-warmups"){
         res.render('articles/a-guide-on-warmups');
     }
-    
+    if(req.params.article == "ultimate-guide-to-gain-mass"){
+        res.render('articles/ultimate-guide-to-gain-mass');
+    }
 });
 
 
@@ -113,6 +120,76 @@ app.get("/articles/:article", function(req, res){
 
 app.get("/dbadd", function(req,res){
     res.render('dbadd');
+});
+
+app.post("/sendmail", function(req,res){
+    console.log("Reached sendMail");
+    
+    var fromFetched = req.body.from;
+    console.log(fromFetched);
+    
+    var toFetched = 'shiv.suhane@gmail.com';
+    console.log(toFetched);
+    
+    var emailFetched = req.body.email;
+    console.log(emailFetched);
+    
+    var subjectFetched = req.body.subject;
+    console.log(subjectFetched);
+    
+    var messageFetched = req.body.message;
+    console.log(messageFetched);
+    
+    let mailOpts, smtpTrans;
+        smtpTrans = nodemailer.createTransport({
+        host: 'smtp.sparkpostmail.com',
+        port: 2525,
+        secure: true,
+        auth: {
+          user: 'SMTP_Injection',
+          pass: '17c12754033108201fdf3f3b5ea26bd6ad61ad7b'
+            }
+            
+        });
+        
+    mailOpts = {
+    from: fromFetched + ' &lt;' + emailFetched + '&gt;',
+    to: toFetched,
+    subject: subjectFetched,
+    text: `${fromFetched} (${emailFetched}) says: ${messageFetched}`
+  };
+  
+  smtpTrans.sendMail(mailOpts, function (error, response) {
+    if (error) {
+        console.log("Failed attempt to send an email:"); 
+        console.log(error);
+        res.redirect('/contactUs')
+        //dialog.info('Sorry, your email could not be sent :(');
+        
+        // popup.alert({
+        //     content: ''
+        // });
+      //res.render('contact-failure');
+    }
+    else {
+        console.log("Email sent successfully");
+        //dialog.info('Your email has been sent');
+        // popup.alert({
+        //     content: 'Your email has been sent'
+        // });
+      //res.render('contact-success');
+    }
+  });
+    
+    // sendmail({
+    //     from: fromFetched,
+    //     to: toFetched,
+    //     subject: subjectFetched,
+    //     html: messageFetched
+    // }, function(err, reply) {
+    //     console.log(err && err.stack);
+    //     console.dir(reply);
+    // });
 });
 
 app.post("/populateTables", function(req,res){
@@ -170,11 +247,6 @@ app.get("/workouts", function(req,res){
     // res.render('home');
 });
 
-app.get("/about", function(req,res){
-    res.render('about');
-    // res.render('home');
-});
-
 app.get("/workouts/:workoutRequested", function(req,res){
     var databaseId ="";
     if(req.params.workoutRequested=="benchPress"){
@@ -212,14 +284,20 @@ app.get("/workouts/:workoutRequested", function(req,res){
    //res.render('workoutTemplate'); 
 });
 
-// app.get('/sitemap', function( req, res, next ) {
-//     app.use(express.static('sitemap'));
-//     res.header('Content-Type', 'application/xml');
-//     res.render( 'sitemap.xml' );
-// });
+
 
 app.get('/sitemap', function( req, res, next ) {
     res.sendFile(path.join(__dirname, 'views', 'sitemap.xml'));
+});
+
+app.get("/about", function(req,res){
+    res.render('about');
+    // res.render('home');
+});
+
+app.get("/contactUs", function(req,res){
+    res.render('contactUs');
+    // res.render('home');
 });
 
 
